@@ -36,14 +36,17 @@ function onMessage(request, sender, sendResponse) {
 	}
 	//Handlers for buttons in the popup.html
 	if (request.type == "contentstudio"){
+	    //TODO should open proper contentstudio based on server.
     	chrome.tabs.create({url:"http://google.dk?cs"});
     }
 
     if (request.type == "webstudio"){
+    	//TODO should open proper webstudio based on server.
        	chrome.tabs.create({url:"http://google.dk?ws"});
     }
 
 	if (request.type == "admin"){
+	    //TODO should open proper admin based on server.
 		chrome.tabs.create({url:"http://google.dk?admin"});
 	}
 };
