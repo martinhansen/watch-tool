@@ -46,6 +46,12 @@ function onMessage(request, sender, sendResponse) {
 
 	//Handling for buttons in the popup.html
 	if (request.type != null) {
+		var openUrl = createUrl(request.type);
+		if (openUrl != "") {
+			chrome.tabs.create({url: openUrl});
+		} else {
+			alert("Kan ikke åbne link");
+		}
 		alert(createUrl(request.type));
 //		chrome.tabs.create({url: createUrl(request.type)});
 	}
@@ -53,16 +59,15 @@ function onMessage(request, sender, sendResponse) {
 
 function createUrl(type) {
 	var url = "http://"+ server + "." + environment + ".jppol.net";
-	if (type == "contentstudio"){
-		return url + "/studio/"
-	}
-
-	if (type == "webstudio"){
-		return url + "/escenic/"
-	}
-
-	if (type == "admin"){
-		return url + "/escenic-admin/"
+	switch (type) {
+		case "contentstudio":
+			return url + "/studio/";
+		case "webstudio":
+			return url + "/escenic/";
+		case "admin":
+			return url + "/escenic-admin/";
+		default:
+			return "";
 	}
 }
 
