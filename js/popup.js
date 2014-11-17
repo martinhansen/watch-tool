@@ -3,7 +3,7 @@ var PopupController = function () {
 	this.csButton_ = document.getElementById('contentstudio');
 	this.wsButton_ = document.getElementById('webstudio');
 	this.adminButton_ = document.getElementById('admin');
-	this.addListeners_()
+	this.addListeners_();
 
 	//Requests info from the background.js
 	chrome.runtime.sendMessage({requestInfo: "environment"}, function(response) {
@@ -31,13 +31,14 @@ PopupController.prototype = {
 		this.adminButton_.addEventListener('click', this.handleClick_.bind(this));
 	},
 
+	//Send the ID of the button clicked
 	handleClick_: function (event) {
-		chrome.runtime.sendMessage({type: event.target.id}, function(response){
+			chrome.runtime.sendMessage({type: event.target.id}, function(response){
 		});
 	}
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  window.PC = new PopupController();
+	window.PC = new PopupController();
 });
 

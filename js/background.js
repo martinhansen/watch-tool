@@ -44,22 +44,27 @@ function onMessage(request, sender, sendResponse) {
 		build=request.storeBuild;
 	}
 
-	//Handlers for buttons in the popup.html
-	if (request.type == "contentstudio"){
-	    //TODO should open proper contentstudio based on server.
-    	chrome.tabs.create({url:"http://google.dk?cs"});
-    }
-
-    if (request.type == "webstudio"){
-    	//TODO should open proper webstudio based on server.
-       	chrome.tabs.create({url:"http://google.dk?ws"});
-    }
-
-	if (request.type == "admin"){
-	    //TODO should open proper admin based on server.
-		chrome.tabs.create({url:"http://google.dk?admin"});
+	//Handling for buttons in the popup.html
+	if (request.type != null) {
+		alert(createUrl(request.type));
+//		chrome.tabs.create({url: createUrl(request.type)});
 	}
 };
+
+function createUrl(type) {
+	var url = "http://"+ server + "." + environment + ".jppol.net";
+	if (type == "contentstudio"){
+		return url + "/studio/"
+	}
+
+	if (type == "webstudio"){
+		return url + "/escenic/"
+	}
+
+	if (type == "admin"){
+		return url + "/escenic-admin/"
+	}
+}
 
 // Listen for the content script to send a message to the background page.
 chrome.extension.onRequest.addListener(onRequest);
