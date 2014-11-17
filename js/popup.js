@@ -1,6 +1,8 @@
 
 var PopupController = function () {
-	this.button_ = document.getElementById('contentstudio');
+	this.csButton_ = document.getElementById('contentstudio');
+	this.wsButton_ = document.getElementById('webstudio');
+	this.adminButton_ = document.getElementById('admin');
 	this.addListeners_()
 
 	chrome.runtime.sendMessage({requestInfo: "server"}, function(response) {
@@ -15,14 +17,18 @@ var PopupController = function () {
 
 PopupController.prototype = {
 
-	button_: null,
+	csButton_: null,
+	wsButton_: null,
+	adminButton_: null,
 
 	addListeners_: function () {
-		this.button_.addEventListener('click', this.handleClick_.bind(this));
+		this.csButton_.addEventListener('click', this.handleClick_.bind(this));
+		this.wsButton_.addEventListener('click', this.handleClick_.bind(this));
+		this.adminButton_.addEventListener('click', this.handleClick_.bind(this));
 	},
 
-	handleClick_: function () {
-		chrome.runtime.sendMessage({type: "admin"}, function(response){
+	handleClick_: function (event) {
+		chrome.runtime.sendMessage({type: event.target.id}, function(response){
 		});
 	}
 };

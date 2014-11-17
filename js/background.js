@@ -35,8 +35,16 @@ function onMessage(request, sender, sendResponse) {
 		var isProd = request.isProd;
 	}
 	//Handlers for buttons in the popup.html
+	if (request.type == "contentstudio"){
+    	chrome.tabs.create({url:"http://google.dk?cs"});
+    }
+
+    if (request.type == "webstudio"){
+       	chrome.tabs.create({url:"http://google.dk?ws"});
+    }
+
 	if (request.type == "admin"){
-		chrome.tabs.create({url:"http://google.dk"});
+		chrome.tabs.create({url:"http://google.dk?admin"});
 	}
 };
 
