@@ -1,6 +1,6 @@
 
 var doc = document.getElementsByTagName('html')[0].innerHTML;
-var serverRegex = /<!-- watch-(.*)@(.*?\d+).*?(jp-.*?)\s/;
+var serverRegex = /<!-- (?:watch|jyllands-posten)-(.*)@(.*?\d+).*?(jp-.*?)\s/;
 var isWatchSite = serverRegex.test(doc);
 
 var url = document.URL;
@@ -30,7 +30,7 @@ if (isWatchSite) {
 		overlay.classList.add('watchInfoOverlay');
 
 		overlay.setAttribute('role', 'alert');
-		overlay.innerHTML = "<h1>WatchInfo</h1>" +
+		overlay.innerHTML = "<h1>Server Info</h1>" +
 							"<h2>Environment: " + match[3] +" </h2>" +
 							"<h2>Server: " + match[2] +" </h2>" + 
 							"<h2>Build: " + match[1] + " </h2>";
