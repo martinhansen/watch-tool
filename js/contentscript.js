@@ -1,7 +1,8 @@
 
 var doc = document.getElementsByTagName('html')[0].innerHTML;
-var regex = /<!-- watch-(.*)@(.*?)\s/;
-var isWatchSite = regex.test(doc);
+var serverRegex = /<!-- watch-(.*)@(.*?\d+)/;
+//TODO also implement regex and matches to fetch out the environment details (jp-dev, jp-staging, jp-prod)
+var isWatchSite = serverRegex.test(doc);
 
 var url = document.URL;
 var frontpageRegex = /\.dk\/?$/;
@@ -12,7 +13,7 @@ var prodRegex = /prod/;
 
 if (isWatchSite) {
 
-	var match = regex.exec(doc);
+	var match = serverRegex.exec(doc);
 	var isProd = prodRegex.test(match[2]);
 
 	chrome.extension.sendRequest({}, function(response) {});
