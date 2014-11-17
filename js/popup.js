@@ -5,8 +5,11 @@ var PopupController = function () {
 	this.adminButton_ = document.getElementById('admin');
 	this.addListeners_()
 
+	chrome.runtime.sendMessage({requestInfo: "environment"}, function(response) {
+		document.getElementById('environment').innerHTML = response.environment;
+	});
+
 	chrome.runtime.sendMessage({requestInfo: "server"}, function(response) {
-		var server = response.server;
 		document.getElementById('server').innerHTML = response.server;
 	});
 

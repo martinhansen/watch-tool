@@ -1,6 +1,6 @@
 
 var doc = document.getElementsByTagName('html')[0].innerHTML;
-var serverRegex = /<!-- watch-(.*)@(.*?\d+)/;
+var serverRegex = /<!-- watch-(.*)@(.*?\d+).*?(jp-.*?)\s/;
 //TODO also implement regex and matches to fetch out the environment details (jp-dev, jp-staging, jp-prod)
 var isWatchSite = serverRegex.test(doc);
 
@@ -14,9 +14,10 @@ var prodRegex = /prod/;
 if (isWatchSite) {
 
 	var match = serverRegex.exec(doc);
-	var isProd = prodRegex.test(match[2]);
+	var isProd = prodRegex.test(match[3]);
 
 	chrome.extension.sendRequest({}, function(response) {});
+	chrome.runtime.sendMessage({storeEnv: match[3]}, function(response) {});
 	chrome.runtime.sendMessage({storeServer: match[2]}, function(response) {});
 	chrome.runtime.sendMessage({storeBuild: match[1]}, function(response) {});
 	chrome.runtime.sendMessage({isProd: isProd}, function(response) {});
@@ -28,6 +29,7 @@ if (isWatchSite) {
 
 		overlay.setAttribute('role', 'alert');
 		overlay.innerHTML = "<h1>WatchInfo</h1>" +
+							"<h2>Environment: " + match[3] +" </h2>" +
 							"<h2>Server: " + match[2] +" </h2>" + 
 							"<h2>Build: " + match[1] + " </h2>";
 						

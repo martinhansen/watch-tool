@@ -15,25 +15,34 @@ function onMessage(request, sender, sendResponse) {
 		sendResponse({isProd: isProd})
 	}
 
+	if (request.isProd != null){
+		var isProd = request.isProd;
+	}
+
 	if (request.requestInfo == "server"){
 		sendResponse({server: server})
+	}
+
+	if (request.storeServer != null){
+		server=request.storeServer;
+    }
+
+    if (request.requestInfo == "environment"){
+		sendResponse({environment: environment})
+	}
+
+	if (request.storeEnv != null){
+		environment=request.storeEnv;
 	}
 
 	if (request.requestInfo == "build"){
 		sendResponse({build: build})
 	}
 
-	if (request.storeServer != null){
-		server=request.storeServer;
-	}
-
 	if (request.storeBuild != null){
 		build=request.storeBuild;
 	}
 
-	if (request.isProd != null){
-		var isProd = request.isProd;
-	}
 	//Handlers for buttons in the popup.html
 	if (request.type == "contentstudio"){
 	    //TODO should open proper contentstudio based on server.
