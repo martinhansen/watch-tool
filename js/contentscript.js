@@ -1,7 +1,6 @@
 
 var doc = document.getElementsByTagName('html')[0].innerHTML;
 var serverRegex = /<!-- watch-(.*)@(.*?\d+).*?(jp-.*?)\s/;
-//TODO also implement regex and matches to fetch out the environment details (jp-dev, jp-staging, jp-prod)
 var isWatchSite = serverRegex.test(doc);
 
 var url = document.URL;
