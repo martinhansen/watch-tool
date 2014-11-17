@@ -1,3 +1,4 @@
+var environment = "NA";
 var build = "NA";
 var server = "NA";
 
