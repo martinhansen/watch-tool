@@ -5,6 +5,7 @@ var PopupController = function () {
 	this.adminButton_ = document.getElementById('admin');
 	this.addListeners_()
 
+	//Requests info from the background.js
 	chrome.runtime.sendMessage({requestInfo: "environment"}, function(response) {
 		document.getElementById('environment').innerHTML = response.environment;
 	});
