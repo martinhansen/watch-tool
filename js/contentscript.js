@@ -15,7 +15,10 @@ if (isWatchSite) {
 	var match = serverRegex.exec(doc);
 	var isProd = prodRegex.test(match[3]);
 
+	//show pageAction (onRequest in background.js)
 	chrome.extension.sendRequest({}, function(response) {});
+
+	//Store details about the current server - for usage in popup, when not on frontpage of a watchsite
 	chrome.runtime.sendMessage({storeEnv: match[3]}, function(response) {});
 	chrome.runtime.sendMessage({storeServer: match[2]}, function(response) {});
 	chrome.runtime.sendMessage({storeBuild: match[1]}, function(response) {});
