@@ -4,10 +4,10 @@ var server = "NA";
 
 function onRequest(request, sender, sendResponse) {
 
-  chrome.pageAction.show(sender.tab.id);
+	chrome.pageAction.show(sender.tab.id);
 
-  // Return nothing to let the connection be cleaned up.
-  sendResponse({});
+	// Return nothing to let the connection be cleaned up.
+	sendResponse({});
 };
 
 function onMessage(request, sender, sendResponse) {
