@@ -44,7 +44,7 @@ if (isWatchSite) {
 
 		setTimeout(function() {
 				overlay.classList.remove('visible');
-		}, 4000);
+		}, 3000);
 	}
 } else {
 // Not watchsite
