@@ -50,7 +50,7 @@ function onMessage(request, sender, sendResponse) {
 		if (openUrl != "") {
 			chrome.tabs.create({url: openUrl});
 		} else {
-			alert("Kan ikke åbne link");
+			alert("Could not open link");
 		}
 		alert(createUrl(request.type));
 //		chrome.tabs.create({url: createUrl(request.type)});
