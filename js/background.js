@@ -52,8 +52,7 @@ function onMessage(request, sender, sendResponse) {
 		} else {
 			alert("Could not open link");
 		}
-		alert(createUrl(request.type));
-//		chrome.tabs.create({url: createUrl(request.type)});
+		chrome.tabs.create({url: createUrl(request.type)});
 	}
 };
 
